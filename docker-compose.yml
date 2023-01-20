@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:latest
+    container_name: db
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_PASSWORD: ${psql_pw}
+    volumes:
+      - /docker/dbdata:/var/lib/postgresql/data
+
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    restart: always
+    ports:
+      - 10001:80
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: ${nc_db}
+      POSTGRES_USER: ${nc_user}
+      POSTGRES_PASSWORD: ${nc_pw}
+      POSTGRES_HOST: ${nc_host}
+      NEXTCLOUD_ADMIN_USER: ${nc_admin}
+      NEXTCLOUD_ADMIN_PASSWORD: ${nc_apw}
+    volumes:
+      - /docker/nc:/var/www/html/
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    ports:
+      - 10002:80
+    depends_on:
+      - db
+    environment:
+      ADMIN_TOKEN: ${vw_token}
+      DATABASE_URL: postgresql://${vw_user}:${vw_pw}@${vw_host}/${vw_db}
+    volumes:
+      - /docker/vw:/data
