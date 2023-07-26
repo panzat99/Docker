@@ -11,6 +11,7 @@ services:
       POSTGRES_PASSWORD: ${psql_pw}
     volumes:
       - /docker/dbdata:/var/lib/postgresql/data
+      - ./database_setup.sh:/docker-entrypoint-initdb.d/database_setup.sh
 
   nextcloud:
     image: nextcloud:latest
