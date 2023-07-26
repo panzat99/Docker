@@ -1,0 +1,16 @@
+psql_pw=
+
+nc_db=
+nc_user=
+nc_pw=
+nc_host=
+nc_admin=
+nc_apw=
+
+vw_user=
+vw_pw=
+vw_host=
+vw_db=
+vw_token=
+
+#Don't forget to set .env file to rw for user only
