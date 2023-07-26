@@ -1,2 +1,2 @@
 # Docker
-GitHub-Repository for my Docker containers. Automatic Database creation in work
+GitHub-Repository for my Docker containers without .env file.
