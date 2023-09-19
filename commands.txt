@@ -1,7 +1,0 @@
-Docker command to update database with local files:
-
-docker exec -d -u www-data <nextcloud container name> /var/www/html/occ files:scan -p "<nextcloud user>/files/more/specific/folder"
-
-Crontab command to copy and update files:
-
-cp -Purn <origin> <destination>
